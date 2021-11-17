@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Marca extends Model
 {
     use HasFactory;
+    // funciona como um dto
+    protected $fillable = ['nome', 'imagem'];
 }
