@@ -42,6 +42,17 @@ class MarcaController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  str  $name
+     * @return \Illuminate\Http\Response
+     */
+    public function findByName($name)
+    {
+        return Marca::where('nome', 'like', '%'.$name.'%')->get();
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -50,8 +61,8 @@ class MarcaController extends Controller
      */
     public function update(Request $request, Marca $marca)
     {
-        $marca->update($request->all());
-        return $marca;
+        //$marca->update($request->all());
+        return 'to aqui';
     }
 
     /**
