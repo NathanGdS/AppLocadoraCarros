@@ -34,6 +34,8 @@ class MarcaController extends Controller
     public function store(Request $request)
     {
         //$marca = Marca::create($request->all());
+
+        $request->validate($this->marca->rules(), $this->marca->feedback());
         $marca = $this->marca->create($request->all());
         return $marca;
     }
@@ -47,6 +49,9 @@ class MarcaController extends Controller
     public function show($id)
     {
         $marca = $this->marca->find($id);
+
+        if($marca === null) return response()->json(['erro' => 'Recurso pesquisado nao existe'], 404);
+
         return $marca;
     }
 
@@ -72,6 +77,24 @@ class MarcaController extends Controller
     public function update(Request $request, $id)
     {
         $marca = $this->marca->find($id);
+
+        if($marca === null) return response()->json(['erro' => 'Recurso pesquisado nao existe'], 404);
+
+
+        if($request->method() === 'PATCH'){
+
+            $regrasDinamicas = array();
+            foreach($marca->rules() as $input => $regra){
+                if(array_key_exists($input,$request->all())){
+                    $regrasDinamicas[$input] = $regra;
+                }
+            }
+
+            $request->validate($regrasDinamicas, $marca->feedback());
+
+        }else{
+            $request->validate($marca->rules(), $marca->feedback());
+        }
         $marca->update($request->all());
         return $marca;
     }
@@ -85,6 +108,9 @@ class MarcaController extends Controller
     public function destroy($id)
     {
         $marca = $this->marca->find($id);
+
+        if($marca === null) return response()->json(['erro' => 'Recurso pesquisado nao existe'], 404);
+
         $marca->delete();
         return ['msg' => 'A marca foi removida com sucesso!'];
     }
