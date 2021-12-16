@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Modelo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ModeloController extends Controller
 {
@@ -104,7 +105,7 @@ class ModeloController extends Controller
             $request->validate($modelo->rules());
         }
 
-        if($request->imagem) Storage::disk('public/modelos')->delete($modelo->imagem);
+        if($request->imagem) Storage::disk('public')->delete($modelo->imagem);
 
         $image = $request->imagem;
         $imagem_urn = $image->store('imagens/modelos', 'public');

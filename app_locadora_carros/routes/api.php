@@ -15,3 +15,4 @@ Route::apiResource('marca', 'MarcaController');
 Route::get('/marca/findByName/{name}', 'MarcaController@findByName');
 
 Route::apiResource('modelo', 'ModeloController');
+Route::get('/modelo/findByName/{name}', 'ModeloController@findByName');
