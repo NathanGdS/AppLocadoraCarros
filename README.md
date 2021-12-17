@@ -1,4 +1,4 @@
 # AppLocadoraCarros
-Uma API de uma Locadora de Carros, desenvolvido com o framework Laravel
+Uma API WebService de uma Locadora de Carros, desenvolvido com o framework Laravel.
 
-***PROJETO NÃO FINALIZADO***
+***DESENVOLVIMENTO EM ANDAMENTO***
