@@ -9,6 +9,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::apiResource('cliente', 'ClienteController');
 Route::apiResource('carro', 'CarroController');
+Route::get('/carro/findByPlaca/{placa}', 'CarroController@findByPlaca');
+
 Route::apiResource('locacao', 'LocacaoController');
 
 Route::apiResource('marca', 'MarcaController');
